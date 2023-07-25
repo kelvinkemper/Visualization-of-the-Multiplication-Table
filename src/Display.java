@@ -54,10 +54,10 @@ public class Display {
         xCoordinate = new double[numOfPoints];
         yCoordinate = new double[numOfPoints];
         for (int i = 0; i < numOfPoints; i++) {
-            double delta = Math.PI * 2 * i / numOfPoints;
+            double delta = (Math.PI * 2 * i / numOfPoints) +  Math.PI;
             xCoordinate[i] = RADIUS * Math.cos(delta);
             yCoordinate[i] = RADIUS * Math.sin(delta);
-            //System.out.println(i + ". " + xCoordinate[i] + " : " + yCoordinate[i]);
+           // System.out.println(i + ". " + xCoordinate[i] + " : " + yCoordinate[i]);
         }
     }
 
@@ -73,25 +73,25 @@ public class Display {
 //       visualize circle for testing
         Circle c = new Circle(RADIUS);
         c.setStroke(Color.BLACK);
-       displayTT.getChildren().add(c);
+        displayTT.getChildren().add(c);
+
 
 
         for (int i = 0; i < numOfPoints; i++) {
 
             // sets which coordinate the end point of the line will be
             int j = (int) multiplier * i % numOfPoints;
+            //System.out.println("j = " + j);
 
 
-            Circle circle = new Circle(xCoordinate[i], yCoordinate[i], 2);
-            circle.setFill(Color.BLACK);
+            Circle circle = new Circle(xCoordinate[i], yCoordinate[i], 3);
+            circle.setFill(Color.PINK);
             displayTT.getChildren().add(circle);
 
-            Line line = new Line(xCoordinate[i],yCoordinate[i],xCoordinate[j],yCoordinate[j]);
-
-            line.setStroke(currColor);
-            line.setStrokeWidth(1);
-
-            displayTT.getChildren().add(line);
+          Line line = new Line(xCoordinate[i],yCoordinate[i],xCoordinate[j],yCoordinate[j]);
+          line.setStroke(currColor);
+          line.setStrokeWidth(1);
+          displayTT.getChildren().add(line);
 
         }
         displayPane.getChildren().add(displayTT);
@@ -167,9 +167,9 @@ public class Display {
                 }
 
                 if (dt > amt) {
-                  //  System.out.println("incrementer= " + incrementer);
+                    //System.out.println("incrementer= " + incrementer);
                     lastUpdate = now;
-                    multiplier += incrementer;
+                    multiplier+= incrementer;
                  //   System.out.println(multiplier);
                     updateCircle();
                 }
@@ -207,8 +207,10 @@ public class Display {
         incrementSpinner = new Spinner<>();
         fpsSpinner = new Spinner<>();
 
+
+
         SpinnerValueFactory<Double> doubleSpinnerValueFactory = new SpinnerValueFactory.DoubleSpinnerValueFactory(1, 360);
-        doubleSpinnerValueFactory.setValue(multiplier);
+        doubleSpinnerValueFactory.setValue(0.1);
 
         SpinnerValueFactory<Integer> integerSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 6);
         integerSpinnerValueFactory.setValue(1);
@@ -218,6 +220,7 @@ public class Display {
 
         incrementSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
             incrementer = incrementSpinner.getValue();
+            System.out.println(incrementer);
         });
 
         fpsSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {

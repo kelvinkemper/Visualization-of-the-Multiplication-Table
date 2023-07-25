@@ -1,12 +1,7 @@
 Modulo Times Table Visualizer
+===
 
-Project 1 CS 351
-
-Kelvin Kemper
-
-Has all required functionality from provided pdf.
-
-For the FPS spinner: 
+**For the Spinner**
 - 1 ~ 1 fps
 - 2 ~ 2 fps
 - 3 ~ 5 fps
@@ -17,3 +12,6 @@ For the FPS spinner:
 
 
 Known bugs: Clicking the "Go" button when the "Number of Points" and "Multiplier" text fields are blank will throw an error, but the program will still run.
+
+---
+![](/resources/sample.png)
